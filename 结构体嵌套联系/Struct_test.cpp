@@ -16,8 +16,8 @@
 using namespace std;
 
 
-void input(struct teacher* tea, int len);
-
+void inputTeacher(struct teacher* tea, int len);
+void printTeacher(struct teacher* tea, int len);
 //注意：学生结构体一定要在老师结构体之前创建。
 //子结构体先创立。
 //2.创建学生结构体
@@ -31,37 +31,46 @@ struct student
 struct teacher
 {
 	string name;
-	student stu[5];
+	student stuArray[5];
 };
 
 void main()
 {
-	struct teacher tea[3];
-	input(tea, 3);
-	for (int i = 0; i < 3; i++)
-	{
-		
-		for (int j = 0; j < 5; j++)
-		{
-			cout <<  tea[i].stu[j].score << endl;
-			
-		}
+	struct teacher teaArray[3];
 
-	}
+
+	int len = sizeof(teaArray) / sizeof(teaArray[0]);
+
+	inputTeacher(teaArray, len);
+	printTeacher(teaArray, len);
+
 	system("pause");
 }
-void input( struct teacher* tea,int len)
+void inputTeacher( struct teacher* tea,int len)
 {
-	
+	string name_seed = "ABCDE";
 	for (int i = 0; i < len; i++)
 	{
-		cout << "input the score of the num" << i + 1 << " teacher" << endl;
+		tea[i].name = "Teacher_";
+		tea[i].name += name_seed[i];
+
+		cout << "输入老师"<< tea[i].name <<"的五个学生成绩" << endl;
 		for (int j = 0; j < 5; j++)
 		{
-			cin >> tea[i].stu[j].score;
+			cin >> tea[i].stuArray[j].score;
 		}
-		
+	}
+}
 
-
+void printTeacher(struct teacher* tea, int len)
+{
+	for (int i = 0; i < len; i++)
+	{
+		cout << tea[i].name << "的五个学生成绩为：";
+		for (int j = 0; j < 5; j++)
+		{
+			cout << tea[i].stuArray[j].score<<" ";
+		}
+		cout << endl;
 	}
 }
