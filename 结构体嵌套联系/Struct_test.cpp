@@ -61,5 +61,7 @@ void input( struct teacher* tea,int len)
 			cin >> tea[i].stu[j].score;
 		}
 		
+
+
 	}
 }
